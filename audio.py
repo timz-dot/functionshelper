@@ -3,7 +3,7 @@ import threading
 import struct
 
 class AudioHandler:
-    def __init__(self):
+    def __init__(self, client):
         self.client = client
         self.audio_chunk_size = 1024
         self.audio_format = pyaudio.paInt16

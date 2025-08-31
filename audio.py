@@ -10,6 +10,8 @@ class AudioHandler:
         self.audio_channels = 1
         self.audio_rate = 44100
         self.audio_streaming = False
+        self.audio = None
+        self.audio_stream = None
     
     def start_audio_stream(self):
         if self.audio_streaming:
@@ -39,11 +41,13 @@ class AudioHandler:
     
     def stop_audio_stream(self):
         self.audio_streaming = False
-        if hasattr(self, 'audio_stream'):
+        if self.audio_stream:
             self.audio_stream.stop_stream()
             self.audio_stream.close()
-        if hasattr(self, 'audio'):
+        if self.audio:
             self.audio.terminate()
+        self.audio_stream = None
+        self.audio = None
 
     def stream_audio(self):
         while self.audio_streaming and self.client.connected:

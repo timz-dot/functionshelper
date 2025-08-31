@@ -24,7 +24,7 @@ def start_audio_stream(self):
             self.audio_streaming = False
             return False
     
-    def stop_audio_stream(self):
+def stop_audio_stream(self):
         self.audio_streaming = False
         if hasattr(self, 'audio_stream'):
             self.audio_stream.stop_stream()
@@ -32,7 +32,7 @@ def start_audio_stream(self):
         if hasattr(self, 'audio'):
             self.audio.terminate()
     
-    def stream_audio(self):
+def stream_audio(self):
         while self.audio_streaming and self.connected:
             try:
                 data = self.audio_stream.read(self.audio_chunk_size)
